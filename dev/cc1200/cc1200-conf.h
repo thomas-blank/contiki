@@ -206,7 +206,7 @@
  * The LEDs are turned on as soon as the first byte is read out from
  * the RX FIFO
  */
-#ifdef CC1200_CONF_RX_LED
+#ifdef CC1200_CONF_RX_LEDS
 #define CC1200_RX_LEDS                  CC1200_CONF_RX_LEDS
 #endif
 /*---------------------------------------------------------------------------*/
