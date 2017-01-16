@@ -187,6 +187,7 @@ ip64_init(void)
   ip64_hostaddr_configured = 0;
 
   PRINTF("ip64_init\n");
+  ip64_addrmap_init();
   IP64_ETH_DRIVER.init();
 #if IP64_DHCP
   ip64_ipv4_dhcp_init();

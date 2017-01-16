@@ -39,6 +39,15 @@
 
 #include <stdio.h>
 
+#define DEBUG 0
+
+#if DEBUG
+#undef PRINTF
+#define PRINTF(...) printf(__VA_ARGS__)
+#else /* DEBUG */
+#define PRINTF(...)
+#endif /* DEBUG */
+
 PROCESS(ip64_ipv4_dhcp_process, "IPv4 DHCP");
 
 uip_ipaddr_t uip_hostaddr; /* Needed because it is referenced by dhcpc.c */
@@ -48,7 +57,7 @@ uip_ipaddr_t uip_hostaddr; /* Needed because it is referenced by dhcpc.c */
 void
 ip64_ipv4_dhcp_init(void)
 {
-  printf("Starting DHCPv4\n");
+  PRINTF("Starting DHCPv4\n");
   process_start(&ip64_ipv4_dhcp_process, NULL);
 }
 /*---------------------------------------------------------------------------*/
@@ -58,10 +67,10 @@ PROCESS_THREAD(ip64_ipv4_dhcp_process, ev, data)
 
   ip64_dhcpc_init(&ip64_eth_addr, sizeof(ip64_eth_addr));
 
-  printf("Inited\n");
+  PRINTF("Inited\n");
 
   ip64_dhcpc_request();
-  printf("Requested\n");
+  PRINTF("Requested\n");
   while(1) {
     PROCESS_WAIT_EVENT();
 
@@ -78,7 +87,7 @@ void
 ip64_dhcpc_configured(const struct ip64_dhcpc_state *s)
 {
   uip_ip6addr_t ip6dnsaddr;
-  printf("DHCP Configured with %d.%d.%d.%d\n",
+  PRINTF("DHCP Configured with %d.%d.%d.%d\n",
 	 s->ipaddr.u8[0], s->ipaddr.u8[1],
 	 s->ipaddr.u8[2], s->ipaddr.u8[3]);
 
