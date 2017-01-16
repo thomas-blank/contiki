@@ -1,5 +1,7 @@
 /*
- * Copyright (c) 2012-2013, Thingsquare, http://www.thingsquare.com/.
+ * Copyright (c) 2015, Weptech elektronik GmbH Germany
+ * http://www.weptech.de
+ *
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,28 +28,21 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
- *
  */
 
-#ifndef ENC28J60_H
-#define ENC28J60_H
+#ifndef IP64_CONF_H
+#define IP64_CONF_H
 
-#include <stdint.h>
+#include "ip64-eth-interface.h"
 
-void enc28j60_init(const uint8_t *mac_addr);
+#define IP64_CONF_UIP_FALLBACK_INTERFACE ip64_eth_interface
+#define IP64_CONF_INPUT                  ip64_eth_interface_input
 
-int enc28j60_send(const uint8_t *data, uint16_t datalen);
+#define IP64_CONF_DHCP                   1
 
-int enc28j60_read(uint8_t *buffer, uint16_t bufsize);
+#include "enc28j60-ip64-driver.h"
+#define IP64_CONF_ETH_DRIVER             enc28j60_ip64_driver
 
-/* ENC28J60 architecture-specific SPI functions that are called by the
-   enc28j60 driver and must be implemented by the platform code */
+#define ENC28J60_MAC_ADDR_PROVIDER       enc28j60_mac_addr_provider
 
-void enc28j60_arch_spi_init(void);
-uint8_t enc28j60_arch_spi_write(uint8_t data);
-uint8_t enc28j60_arch_spi_read(void);
-void enc28j60_arch_spi_select(void);
-void enc28j60_arch_spi_deselect(void);
-
-
-#endif /* ENC28J60_H */
+#endif /* IP64_CONF_H */

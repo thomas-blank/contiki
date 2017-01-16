@@ -1,5 +1,7 @@
 /*
- * Copyright (c) 2012-2013, Thingsquare, http://www.thingsquare.com/.
+ * Copyright (c) 2015, Weptech elektronik GmbH Germany
+ * http://www.weptech.de
+ *
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,28 +28,49 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
- *
  */
 
-#ifndef ENC28J60_H
-#define ENC28J60_H
+/**
+ * \addtogroup saker
+ *
+ * @{
+ *
+ * \defgroup saker-eui48 EUI-48 address provider
+ *
+ * Driver for the retrieval of an unique EUI-48 address from the external 
+ * I2C-EEPROM.
+ * In fact it's just a wrapper around the i2c-eeprom module 
+ * in order to provide a similar interface like the ieee-addr module.
+ *
+ * @{
+ *
+ * \file
+ *      Header file for EUI-48 address driver
+ */
 
-#include <stdint.h>
+#ifndef EUI48_H_
+#define EUI48_H_
 
-void enc28j60_init(const uint8_t *mac_addr);
+#include "contiki.h"
 
-int enc28j60_send(const uint8_t *data, uint16_t datalen);
+/*---------------------------------------------------------------------------*/
+/** The size of the EUI-48 (48 bit) */
+#define EUI48_SIZE              6
+/*---------------------------------------------------------------------------*/
+/**
+ * \brief Retrieve a unique EUI-48
+ *
+ * \param buf Destination buffer for the EUI-48
+ * \param buf_size The size of the destination buffer
+ * \return 0 in case of errors, else number of bytes copied
+ */
+int
+eui48_addr_cpy_to(uint8_t *buf, uint8_t buf_size);
+/*---------------------------------------------------------------------------*/
 
-int enc28j60_read(uint8_t *buffer, uint16_t bufsize);
+#endif /* EUI48_H_ */
 
-/* ENC28J60 architecture-specific SPI functions that are called by the
-   enc28j60 driver and must be implemented by the platform code */
-
-void enc28j60_arch_spi_init(void);
-uint8_t enc28j60_arch_spi_write(uint8_t data);
-uint8_t enc28j60_arch_spi_read(void);
-void enc28j60_arch_spi_select(void);
-void enc28j60_arch_spi_deselect(void);
-
-
-#endif /* ENC28J60_H */
+/**
+ * @}
+ * @}
+ */

@@ -1,5 +1,7 @@
 /*
- * Copyright (c) 2012-2013, Thingsquare, http://www.thingsquare.com/.
+ * Copyright (c) 2015, Weptech elektronik GmbH Germany
+ * http://www.weptech.de
+ *
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,27 +29,39 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
+ * This file is part of the Contiki operating system.
+ */
+/**
+ * \addtogroup saker-enc28j60
+ *
+ * @{
+ *
+ * \defgroup saker-enc28j60-mac-addr-provider Ethernet chip MAC address provider
+ *
+ * @{
+ *
+ * \file
+ *      This file defines a function that provides a MAC address for the Ethernet chip.
+ *
  */
 
-#ifndef ENC28J60_H
-#define ENC28J60_H
+#include "eui48.h"
 
+#include <stddef.h>
 #include <stdint.h>
 
-void enc28j60_init(const uint8_t *mac_addr);
+#include "dev/enc28j60/enc28j60-ip64-driver.h"
 
-int enc28j60_send(const uint8_t *data, uint16_t datalen);
-
-int enc28j60_read(uint8_t *buffer, uint16_t bufsize);
-
-/* ENC28J60 architecture-specific SPI functions that are called by the
-   enc28j60 driver and must be implemented by the platform code */
-
-void enc28j60_arch_spi_init(void);
-uint8_t enc28j60_arch_spi_write(uint8_t data);
-uint8_t enc28j60_arch_spi_read(void);
-void enc28j60_arch_spi_select(void);
-void enc28j60_arch_spi_deselect(void);
-
-
-#endif /* ENC28J60_H */
+/*---------------------------------------------------------------------------*/
+int
+enc28j60_mac_addr_provider(uint8_t* eui48){
+  if(eui48 != NULL){
+    return eui48_addr_cpy_to((uint8_t*) eui48, EUI48_SIZE);
+  }
+  return -1;
+}
+/*---------------------------------------------------------------------------*/
+/**
+ * @}
+ * @}
+ */

@@ -1,5 +1,7 @@
 /*
- * Copyright (c) 2012-2013, Thingsquare, http://www.thingsquare.com/.
+ * Copyright (c) 2015, Weptech elektronik GmbH Germany
+ * http://www.weptech.de
+ *
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,28 +28,33 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
- *
  */
 
-#ifndef ENC28J60_H
-#define ENC28J60_H
+/**
+ * \addtogroup saker
+ *
+ * @{
+ *
+ * \defgroup saker-sensors Sensors
+ *
+ * Generic module controlling all of the platform's sensors. For the time
+ * being, there is only one button (BTN1) that we have to handle.
+ *
+ * @{
+ *
+ * \file
+ *      Implementation of a generic module controlling the platform's sensors
+ */
 
-#include <stdint.h>
+#include "contiki.h"
+#include "dev/button-sensor.h"
 
-void enc28j60_init(const uint8_t *mac_addr);
+/*---------------------------------------------------------------------------*/
+/** \brief Export a global symbol to be used by the sensor API */
+SENSORS(&button_sensor);
+/*---------------------------------------------------------------------------*/
 
-int enc28j60_send(const uint8_t *data, uint16_t datalen);
-
-int enc28j60_read(uint8_t *buffer, uint16_t bufsize);
-
-/* ENC28J60 architecture-specific SPI functions that are called by the
-   enc28j60 driver and must be implemented by the platform code */
-
-void enc28j60_arch_spi_init(void);
-uint8_t enc28j60_arch_spi_write(uint8_t data);
-uint8_t enc28j60_arch_spi_read(void);
-void enc28j60_arch_spi_select(void);
-void enc28j60_arch_spi_deselect(void);
-
-
-#endif /* ENC28J60_H */
+/**
+ * @}
+ * @}
+ */

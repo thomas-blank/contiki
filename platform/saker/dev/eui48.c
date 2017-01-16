@@ -1,5 +1,7 @@
 /*
- * Copyright (c) 2012-2013, Thingsquare, http://www.thingsquare.com/.
+ * Copyright (c) 2015, Weptech elektronik GmbH Germany
+ * http://www.weptech.de
+ *
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,28 +28,28 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
- *
  */
 
-#ifndef ENC28J60_H
-#define ENC28J60_H
+#include "eui48.h"
+#include "i2c-eeprom.h"
 
-#include <stdint.h>
+/**
+ * \addtogroup saker-eui48
+ *
+ * @{
+ *
+ * \file
+ *      Implementation of the EUI-48 address driver
+ */
 
-void enc28j60_init(const uint8_t *mac_addr);
+/*---------------------------------------------------------------------------*/
+int
+eui48_addr_cpy_to(uint8_t *buf, uint8_t buf_len)
+{
+  return i2c_eeprom_read_block(buf, EEPROM_EUI48_START_ADDR, buf_len);
+}
+/*---------------------------------------------------------------------------*/
 
-int enc28j60_send(const uint8_t *data, uint16_t datalen);
-
-int enc28j60_read(uint8_t *buffer, uint16_t bufsize);
-
-/* ENC28J60 architecture-specific SPI functions that are called by the
-   enc28j60 driver and must be implemented by the platform code */
-
-void enc28j60_arch_spi_init(void);
-uint8_t enc28j60_arch_spi_write(uint8_t data);
-uint8_t enc28j60_arch_spi_read(void);
-void enc28j60_arch_spi_select(void);
-void enc28j60_arch_spi_deselect(void);
-
-
-#endif /* ENC28J60_H */
+/**
+ * @}
+ */

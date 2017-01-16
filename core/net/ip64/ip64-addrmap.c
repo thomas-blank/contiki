@@ -55,6 +55,14 @@ static uint16_t mapped_port = FIRST_MAPPED_PORT;
 
 #define printf(...)
 
+
+/*---------------------------------------------------------------------------*/
+static void
+increase_mapped_port(void)
+{
+  mapped_port = (random_rand() % (LAST_MAPPED_PORT - FIRST_MAPPED_PORT)) +
+    FIRST_MAPPED_PORT;
+}
 /*---------------------------------------------------------------------------*/
 struct ip64_addrmap_entry *
 ip64_addrmap_list(void)
@@ -67,7 +75,7 @@ ip64_addrmap_init(void)
 {
   memb_init(&entrymemb);
   list_init(entrylist);
-  mapped_port = FIRST_MAPPED_PORT;
+  increase_mapped_port();       /* Randomize first used port. */
 }
 /*---------------------------------------------------------------------------*/
 static void
@@ -173,13 +181,6 @@ ip64_addrmap_lookup_port(uint16_t mapped_port, uint8_t protocol)
     }
   }
   return NULL;
-}
-/*---------------------------------------------------------------------------*/
-static void
-increase_mapped_port(void)
-{
-  mapped_port = (random_rand() % (LAST_MAPPED_PORT - FIRST_MAPPED_PORT)) +
-    FIRST_MAPPED_PORT;
 }
 /*---------------------------------------------------------------------------*/
 struct ip64_addrmap_entry *
