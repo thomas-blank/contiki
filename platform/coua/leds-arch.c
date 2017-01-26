@@ -33,19 +33,48 @@
  */
 /*---------------------------------------------------------------------------*/
 /**
- * \addtogroup coua-sensors
+ * \addtogroup coua-peripherals
  * @{
  *
  * \file
- *      Generic module controlling Coua sensors
+ *      Driver for Coua LEDs
  */
 /*---------------------------------------------------------------------------*/
 #include "contiki.h"
-#include "dev/button-sensor.h"
+#include "board.h"
 
-#include <string.h>
+#include "ti-lib.h"
 /*---------------------------------------------------------------------------*/
-/** \brief Exports a global symbol to be used by the sensor API */
-SENSORS(&button_sensor);
+static unsigned char c;
+static int inited = 0;
+/*---------------------------------------------------------------------------*/
+void
+leds_arch_init(void)
+{
+  if(inited) {
+    return;
+  }
+  inited = 1;
+
+  ti_lib_rom_ioc_pin_type_gpio_output(BOARD_IOID_LED);
+
+  ti_lib_gpio_clear_multi_dio(BOARD_LED_ALL);
+}
+/*---------------------------------------------------------------------------*/
+unsigned char
+leds_arch_get(void)
+{
+  return c;
+}
+/*---------------------------------------------------------------------------*/
+void
+leds_arch_set(unsigned char leds)
+{
+  c = leds;
+  ti_lib_gpio_clear_multi_dio(BOARD_LED_ALL);
+  if((leds & LEDS_YELLOW) == LEDS_YELLOW) {
+    ti_lib_gpio_set_dio(BOARD_IOID_LED);
+  }
+}
 /*---------------------------------------------------------------------------*/
 /** @} */

@@ -68,9 +68,35 @@
 #undef LEDS_RED
 #undef LEDS_CONF_ALL
 
+#define LEDS_YELLOW                     1
+#define LEDS_RED                        LEDS_YELLOW
+#define LEDS_GREEN                      LEDS_YELLOW
+#define LEDS_ORANGE                     LEDS_YELLOW
+#define LEDS_CONF_ALL                   LEDS_YELLOW
 
-/* Notify various examples that we have no LEDs */
-#define PLATFORM_HAS_LEDS               0
+
+/* Notify various examples that we have LEDs */
+#define PLATFORM_HAS_LEDS               1
+/** @} */
+/*---------------------------------------------------------------------------*/
+/**
+ * \name LED IOID mappings
+ *
+ * Those values are not meant to be modified by the user
+ * @{
+ */
+#define BOARD_IOID_LED            IOID_8
+#define BOARD_LED                 (1 << BOARD_IOID_LED)
+#define BOARD_LED_ALL             (BOARD_LED)
+/*---------------------------------------------------------------------------*/
+/**
+ * \name Button IOID mapping
+ *
+ * Those values are not meant to be modified by the user
+ * @{
+ */
+#define BOARD_IOID_KEY          IOID_9
+#define BOARD_KEY               (1 << BOARD_IOID_KEY)
 /** @} */
 /*---------------------------------------------------------------------------*/
 /**
