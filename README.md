@@ -34,4 +34,14 @@ About this repository
 
 This repository is Weptech's fork of the Contiki operating system. It contains
 platform support and example code for Weptech's 6LoWPAN devices like the Saker
-Gateway.
+Gateway. 
+
+Branches
+--------
+ * 'master': Tracks Contiki's development to always keep up to date. 
+ * 'weptech': Weptech's own modifications and additions. This is most probably
+   what you are looking for here. The master branch, i.e. Contiki's upstream
+   development, is continuously merged back in.
+ * 'coua-example-peripherals': The basic Coua platform is present in the weptech
+   branch. This branch adapts the platform and example after some basic
+   peripheral hardware was added as an example.
