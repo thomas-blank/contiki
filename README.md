@@ -17,3 +17,31 @@ and so on.
 For more information, see the Contiki website:
 
 [http://contiki-os.org](http://contiki-os.org)
+
+Weptech elektronik GmbH
+=======================
+
+Weptech elektronik GmbH is an electronics developer and manufacturer from
+Landau, Germany. With 20 years of experience under our belt, we offer our
+customers services throughout the whole product development process, from the
+first circuit design to state-of-the-art hardware manufacturing and software
+development. We also employed our knowledge of 6LoWPAN and OMS technologies to
+produce own products like the Saker IoT Gateway.
+
+
+About this repository
+=====================
+
+This repository is Weptech's fork of the Contiki operating system. It contains
+platform support and example code for Weptech's 6LoWPAN devices like the Saker
+Gateway. 
+
+Branches
+--------
+ * 'master': Tracks Contiki's development to always keep up to date. 
+ * 'weptech': Weptech's own modifications and additions. This is most probably
+   what you are looking for here. The master branch, i.e. Contiki's upstream
+   development, is continuously merged back in.
+ * 'coua-example-peripherals': The basic Coua platform is present in the weptech
+   branch. This branch adapts the platform and example after some basic
+   peripheral hardware was added as an example.
