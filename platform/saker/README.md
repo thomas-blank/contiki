@@ -3,6 +3,11 @@ Getting Started with Contiki on the Weptech Saker
 
 This guide aims to get you started with Contiki and the Weptech Saker.
 
+> Please make sure that if you clone this repository, you either do so with
+> $ git clone --recursive, or update your submodules manually afterwards with 
+> the commands $ git submodule init and $ git submodule update.
+> If you fail to do so, compilation will fail.
+
 Saker features
 ================
 
