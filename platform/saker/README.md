@@ -205,6 +205,7 @@ CC26XX based Sensortag, or the CC2650 or CC1310 Launchpads.
 > refer there.
 
 #### Prepare the code
+
 1. Configure what the firmware will do by editing
 `examples/cc26xx/cc26xx-web-demo/project-conf.h`. Take note of the configured
 `IEEE802154_CONF_PANID` and `RF_CORE_CONF_CHANNEL`. The defaults here should
@@ -224,6 +225,13 @@ with links to the relevant RFCs for the gory details.)
 3. Other configurations for your device, e.g. `BOARD_CONF_DEBUGGER_DEVPACK` if
 you are using a Sensortag with a Dbugger DevPack. Please refer to your device's
 README.md.
+
+> Note: The CoAP and NetUART examples will not work with the IP64 module. Nodes
+> in the network are not reachable from the outside IPv4 network. Connections 
+> can only be established from IPv6 to IPv4.
+> The 6LBR_Client-Demo however will completely break the mesh network formation.
+> If you leave it enabled, the MQTT example will not work either. Make sure to 
+> turn it off.
 
 #### Compile the code
 Strictly speaking, to build it you need to run 
