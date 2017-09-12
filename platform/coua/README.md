@@ -4,6 +4,11 @@ Getting Started with Contiki on the Weptech Coua
 This guide aims to get you started with Contiki and the Weptech Coua development
 board.
 
+> Please make sure that if you clone this repository, you either do so with
+> $ git clone --recursive, or update your submodules manually afterwards with 
+> the commands $ git submodule init and $ git submodule update.
+> If you fail to do so, compilation will fail.
+
 Coua features
 ================
 The Coua features the following components: 
@@ -190,6 +195,8 @@ Therefore, the device ID for that device will be `00124ba1b142`.
 
 With your device ID, check out the data that the MQTT server has received by
 going to <https://quickstart.internetofthings.ibmcloud.com>. 
+
+> Note: IBM's server uses websockets to display the device data. Many corporate networks block websockets in their firewall. While IBM will then correctly receive the device data, the webpage will not display it. Please check with your network administrator if websockets work in your environment if you experience trouble.
 
 IPV6/rpl-border-router
 ----------------------

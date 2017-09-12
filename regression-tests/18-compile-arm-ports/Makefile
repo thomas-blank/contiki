@@ -9,9 +9,11 @@ ipv6/multicast/ev-aducrf101mkxz \
 cc26xx/cc26xx-web-demo/srf06-cc26xx \
 cc26xx/very-sleepy-demo/srf06-cc26xx:BOARD=sensortag/cc2650 \
 cc26xx/cc26xx-web-demo/srf06-cc26xx:BOARD=sensortag/cc2650 \
+cc26xx/cc26xx-web-demo/srf06-cc26xx:BOARD=sensortag/cc1350 \
 cc26xx/cc26xx-web-demo/srf06-cc26xx:BOARD=srf06/cc13xx \
 cc26xx/cc26xx-web-demo/srf06-cc26xx:BOARD=launchpad/cc2650 \
 cc26xx/cc26xx-web-demo/srf06-cc26xx:BOARD=launchpad/cc1310 \
+cc26xx/cc26xx-web-demo/srf06-cc26xx:BOARD=launchpad/cc1350 \
 cc26xx/very-sleepy-demo/srf06-cc26xx \
 hello-world/cc2538dk \
 ipv6/rpl-border-router/cc2538dk \
@@ -52,13 +54,17 @@ sensniff/zoul:ZOUL_CONF_SUB_GHZ_SNIFFER=1 \
 sensniff/srf06-cc26xx \
 sensniff/srf06-cc26xx:BOARD=launchpad/cc1310 \
 sensniff/ev-aducrf101mkxz \
+sensniff/saker \
+sensniff/saker:PLATFORM_CONF_USE_CC1200=1 \
 cfs-coffee/cc2538dk \
 cfs-coffee/openmote-cc2538 \
 cfs-coffee/zoul \
 fat/zoul:BOARD=remote-revb \
 ipv6/rpl-tsch/zoul \
 ipv6/rpl-tsch/zoul:MAKE_WITH_ORCHESTRA=1 \
-ipv6/rpl-tsch/zoul:MAKE_WITH_SECURITY=1
+ipv6/rpl-tsch/zoul:MAKE_WITH_SECURITY=1 \
+saker/ip64-rpl-border-router/saker \
+saker/ip64-rpl-border-router/saker:PLATFORM_CONF_USE_CC1200=1
 
 TOOLS=
 
